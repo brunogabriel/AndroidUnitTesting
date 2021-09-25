@@ -1,3 +1,6 @@
+#MAC OSX
+.DS_Store
+
 # Built application files
 *.apk
 *.aar

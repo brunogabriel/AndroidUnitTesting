@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">UnitTestingSample</string>
+    <string name="identifier_pattern">Identifier: %s</string>
+    <string name="user_identifier_pattern">User ID: %s</string>
+    <string name="title_pattern">Title: %s</string>
+    <string name="body_pattern">Body: %s</string>
+    <string name="empty_result">Empty result</string>
+    <string name="try_again">Try again</string>
+
+</resources>

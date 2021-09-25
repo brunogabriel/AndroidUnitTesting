@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="inset_value">8dp</dimen>
+    <dimen name="inset_value_2x">8dp</dimen>
+    <dimen name="inset_value_3x">24dp</dimen>
+</resources>
