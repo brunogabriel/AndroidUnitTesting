@@ -44,9 +44,9 @@ Some images from this sample:
 
 In a popular approach like RxJava, for testing we can just using their own tool. For example, supposing a simple method that returns a `Single<T>`, like our repository, we need some steps:
 
-1 - First mock the result of our dependency (in our case, service)
-2 - Call function `test` from Rx library, this function will create a TestObserver
-3 - Compare results: mock vs call result
+1. First mock the result of our dependency (in our case, service)
+2. Call function `test` from Rx library, this function will create a TestObserver
+3. Compare results: mock vs call result
 
 In step 3, we use `assertResult` because internally, this function will verify if has no errors and complete the chain. Do not forget to call `dispose` to avoid memory leaks or flaky tests.
 
@@ -82,12 +82,12 @@ For testing LiveData results, generally I prefer to use spies approach. In Mockk
 
 Our steps:
 
-1 - Create spyks to observe or capture changes in our LiveData
-2 - Mock view model dependencies behaviour
-3 - Observe live data changes passing spyks (item 1)
-4 - Call function responsible for change LiveData value
-5 - Verify if spyks are capture LiveData changes
-6 - Use capture mutableList to compare values
+1. Create spyks to observe or capture changes in our LiveData
+2. Mock view model dependencies behaviour
+3. Observe live data changes passing spyks (item 1)
+4. Call function responsible for change LiveData value
+5. Verify if spyks are capture LiveData changes
+6. Use capture mutableList to compare values
 
 ```kotlin
 val errorMessage: LiveData<String>
@@ -110,7 +110,7 @@ assertThat(errorResults.size).isEqualTo(1)
 assertThat(errorResults.first()).isEqualTo(DEFAULT_ERROR_MESSAGE)
 ```
 
-This example is so simple, but in this repository I created very simple calls in same way as a guide.
+This example is so simple, maybe this can help someone.
 
 
 ## API
