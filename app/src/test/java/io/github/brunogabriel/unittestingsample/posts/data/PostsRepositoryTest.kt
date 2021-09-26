@@ -10,7 +10,7 @@ import io.reactivex.Single
 import org.junit.Before
 import org.junit.Test
 
-class PostsRepositoryTest() {
+class PostsRepositoryTest {
     @MockK
     private lateinit var service: PostService
 

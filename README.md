@@ -40,6 +40,78 @@ Some images from this sample:
     <img src="showcase/error.png" width=200>
 </p>
 
+## Testing Rx Results with Mocks
+
+In a popular approach like RxJava, for testing we can just using their own tool. For example, supposing a simple method that returns a `Single<T>`, like our repository, we need some steps:
+
+1 - First mock the result of our dependency (in our case, service)
+2 - Call function `test` from Rx library, this function will create a TestObserver
+3 - Compare results: mock vs call result
+
+In step 3, we use `assertResult` because internally, this function will verify if has no errors and complete the chain. Do not forget to call `dispose` to avoid memory leaks or flaky tests.
+
+```kotlin
+
+class PostsRepositoryImpl @Inject constructor(
+    private val service: PostService
+) : PostsRepository {
+    override fun getPosts(): Single<List<PostResponse>> = service.getPosts()
+}
+
+```
+
+```kotlin
+// given
+val posts = listOf<PostResponse>(mockk(), mockk())
+every { repository.getPosts() } returns Single.just(posts)
+
+// when
+val result = repository.getPosts()
+
+// then
+result.test()
+    .assertResult(posts)
+    .dispose()
+```
+
+## Testing ViewModel with LiveData
+
+The hard part of our code.
+
+For testing LiveData results, generally I prefer to use spies approach. In Mockk we use spyks. Basically we are listening LiveData forever and will store LiveData changes in a mutableList. In this case, capture results with Spyks.
+
+Our steps:
+
+1 - Create spyks to observe or capture changes in our LiveData
+2 - Mock view model dependencies behaviour
+3 - Observe live data changes passing spyks (item 1)
+4 - Call function responsible for change LiveData value
+5 - Verify if spyks are capture LiveData changes
+6 - Use capture mutableList to compare values
+
+```kotlin
+val errorMessage: LiveData<String>
+```
+
+```kotlin
+// given
+val observerErrorMessage = spyk<Observer<String>>()
+val errorResults = mutableListOf<String>()
+
+// mock view model dependencies
+viewModel.errorMessage.observeForever(observerErrorMessage)
+
+// when
+viewModel.takePosts()
+
+// then
+verify { observerErrorMessage.onChanged(capture(errorResults)) }
+assertThat(errorResults.size).isEqualTo(1)
+assertThat(errorResults.first()).isEqualTo(DEFAULT_ERROR_MESSAGE)
+```
+
+This example is so simple, but in this repository I created very simple calls in same way as a guide.
+
 
 ## API
 
