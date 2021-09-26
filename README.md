@@ -22,7 +22,7 @@ In a posts package we can represent Clean Architecture structure with data, doma
 
 To write our unit tests, I used a very common approach from BDD, [GivenWhenThen](https://martinfowler.com/bliki/GivenWhenThen.html). In resume, given a scenario, when an action is executed, then we have a new behaviour or result.
 
-## Testing tools
+### Testing tools
 
 The two principal external tools used here are Mockk and Truth.
 
@@ -34,9 +34,10 @@ Truth same as their description a fluent tool, in my opinion is solving a Java a
 
 Some images from this sample:
 
-<p align=center>
+<p>
     <img src="showcase/loading.png" width=200>
     <img src="showcase/success.png" width=200>
+    <img src="showcase/error.png" width=200>
 </p>
 
 
