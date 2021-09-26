@@ -23,7 +23,7 @@ class PostsRepositoryTest() {
     }
 
     @Test
-    fun `should get posts when call getPosts`() {
+    fun `should get a list of posts response when call getPosts`() {
         // given
         val posts = listOf<PostResponse>(mockk(), mockk())
         every { repository.getPosts() } returns Single.just(posts)

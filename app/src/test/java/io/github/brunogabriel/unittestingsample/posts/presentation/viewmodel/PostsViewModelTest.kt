@@ -131,7 +131,7 @@ class PostsViewModelTest {
     }
 
     @Test
-    fun `should display default error when call takePosts with null message`() {
+    fun `should display default error message when call takePosts with no message in exception`() {
         // given
         val observerDisplayingView = spyk<Observer<Int>>()
         val displayingViewResults = mutableListOf<Int>()
